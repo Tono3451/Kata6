@@ -1,15 +1,14 @@
 package software.ulpgc.kata6.model;
 
-public record Player(String name, String nationality, String position, String squad, League league) {
+public record Player(int playerId, String name, String nationality, String position) {
 
     @Override
     public String toString() {
         return "Player{" +
-                "name='" + name + '\'' +
+                "playerId='" + playerId + '\'' +
+                ", name='" + name + '\'' +
                 ", nationality='" + nationality + '\'' +
-                ", position='" + position + '\'' +
-                ", squad='" + squad + '\'' +
-                ", league=" + league +
+                ", position='" + position +
                 '}';
     }
 }

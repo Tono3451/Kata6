@@ -1,6 +1,5 @@
 package software.ulpgc.kata6.io;
 
-import software.ulpgc.kata6.model.League;
 import software.ulpgc.kata6.model.Player;
 
 public class CsvPlayerDeserializer implements PlayerDeserializer {
@@ -10,18 +9,11 @@ public class CsvPlayerDeserializer implements PlayerDeserializer {
     }
 
     private Player deserialize(String[] values) {
-        return new Player(values[1], values[2], removeQuotes(values[3]), values[4], toLeague(values[5]));
+        return new Player(toInt(values[0]), values[1], values[2], removeQuotes(values[3]));
     }
 
-    private League toLeague(String value) {
-        return switch (value) {
-            case "eng Premier League" -> League.PREMIERLEAGUE;
-            case "es La Liga" -> League.LALIGA;
-            case "it Serie A" -> League.SERIAA;
-            case "fr Ligue 1" -> League.LIGUE1;
-            case "de Bundesliga" -> League.BUNDESLIGA;
-            default -> null;
-        };
+    private int toInt(String value) {
+        return Integer.parseInt(value);
     }
 
     private String removeQuotes(String value) {

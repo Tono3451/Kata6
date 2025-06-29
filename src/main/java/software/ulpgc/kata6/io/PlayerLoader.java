@@ -4,7 +4,8 @@ import software.ulpgc.kata6.model.Player;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 public interface PlayerLoader {
-    List<Player> load() throws IOException;
+    Map<Integer, Player> load() throws IOException;
 }

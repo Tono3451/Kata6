@@ -7,7 +7,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class FilePlayerLoader implements PlayerLoader{
     private final File file;
@@ -19,14 +21,15 @@ public class FilePlayerLoader implements PlayerLoader{
     }
 
     @Override
-    public List<Player> load() throws IOException {
-        List<Player> players = new ArrayList<>();
+    public Map<Integer, Player> load() throws IOException {
+        Map<Integer, Player> players = new HashMap<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             reader.readLine();
             while(true){
                 String line = reader.readLine();
                 if (line == null) break;
-                players.add(playerDeserializer.deserialize(line));
+                Player player = playerDeserializer.deserialize(line);
+                players.put(player.playerId(), player);
             }
         }
         return players;
